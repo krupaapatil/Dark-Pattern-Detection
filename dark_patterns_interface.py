@@ -8,7 +8,7 @@ import joblib
 BASE_DIR = Path(__file__).resolve().parent
 MODEL_PATH = BASE_DIR / "outputs" / "best_model.joblib"
 CATEGORY_MODEL_PATH = BASE_DIR / "outputs" / "best_category_model.joblib"
-WINDOW_TITLE = "Text Analyzer"
+WINDOW_TITLE = "Dark Pattern Text Analyzer"
 CATEGORY_EXPLANATIONS = {
     "Urgency": "This wording pushes fast action using countdowns, deadlines, or immediate consequences.",
     "Scarcity": "This wording creates pressure by suggesting limited stock, limited slots, or low availability.",
@@ -45,7 +45,7 @@ def predict_text(binary_model, category_model, text: str) -> dict[str, str]:
     predicted_label = int(binary_model.predict([cleaned_text])[0])
 
     if predicted_label == 1:
-        verdict = "Likely fake / manipulative"
+        verdict = "Likely manipulative / risky"
         category = "Likely manipulation type: checking unavailable"
         detail = (
             "This text looks similar to scam, phishing, or dark-pattern wording "
@@ -66,7 +66,7 @@ def predict_text(binary_model, category_model, text: str) -> dict[str, str]:
                 "has not been generated yet."
             )
     else:
-        verdict = "Likely not fake / normal"
+        verdict = "Likely normal / low risk"
         category = "Likely manipulation type: none"
         detail = (
             "This text looks closer to ordinary, legitimate, and "

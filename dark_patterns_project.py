@@ -60,6 +60,7 @@ def resolve_data_file(candidates: list[Path], dataset_name: str) -> Path:
 def build_dataset_configs() -> list[DatasetConfig]:
     synthetic_file = resolve_data_file(
         [
+            BASE_DIR / "synthetic_dark_pattern_dataset_2500.xlsx",
             BASE_DIR / "outputs" / "synthetic_dark_pattern_dataset_2500.xlsx",
             Path(
                 r"c:\Users\KrutarthPC\Downloads\synthetic_dark_pattern_dataset_2500.xlsx"
